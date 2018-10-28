@@ -2,9 +2,6 @@ package com.ethioroot.selfcare.ethioselfcare;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -25,7 +22,7 @@ import java.util.List;
 /**
  * Created by Ravi Tamada on 18/05/16.
  */
-public class MainMenuAdapter extends RecyclerView.Adapter<MainMenuAdapter.MyViewHolder> {
+public class GebetaMenuAdapter extends RecyclerView.Adapter<GebetaMenuAdapter.MyViewHolder> {
 
     private Context mContext;
     private List<MainMenu> menuList;
@@ -48,7 +45,7 @@ public class MainMenuAdapter extends RecyclerView.Adapter<MainMenuAdapter.MyView
 
     }
 
-    public MainMenuAdapter(Context mContext, List<MainMenu> menuList) {
+    public GebetaMenuAdapter(Context mContext, List<MainMenu> menuList) {
         this.mContext = mContext;
         this.menuList = menuList;
     }

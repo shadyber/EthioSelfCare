@@ -2,9 +2,6 @@ package com.ethioroot.selfcare.ethioselfcare;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -25,13 +22,10 @@ import java.util.List;
 /**
  * Created by Ravi Tamada on 18/05/16.
  */
-public class MainMenuAdapter extends RecyclerView.Adapter<MainMenuAdapter.MyViewHolder> {
+public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.MyViewHolder> {
 
     private Context mContext;
     private List<MainMenu> menuList;
-
-
-    public Animation animBounce,animZoomin,animZoomout;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, count;
@@ -39,16 +33,16 @@ public class MainMenuAdapter extends RecyclerView.Adapter<MainMenuAdapter.MyView
 
         public MyViewHolder(View view) {
             super(view);
-            title = (TextView) view.findViewById(R.id.title);
-            count = (TextView) view.findViewById(R.id.count);
-            thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
-            overflow = (ImageView) view.findViewById(R.id.overflow);
+            title =  view.findViewById(R.id.title);
+            count =  view.findViewById(R.id.count);
+            thumbnail =  view.findViewById(R.id.thumbnail);
+            overflow =  view.findViewById(R.id.overflow);
 
         }
 
     }
 
-    public MainMenuAdapter(Context mContext, List<MainMenu> menuList) {
+    public AppsAdapter(Context mContext, List<MainMenu> menuList) {
         this.mContext = mContext;
         this.menuList = menuList;
     }
@@ -56,7 +50,7 @@ public class MainMenuAdapter extends RecyclerView.Adapter<MainMenuAdapter.MyView
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.album_card, parent, false);
+                .inflate(R.layout.app_card, parent, false);
 
         return new MyViewHolder(itemView);
     }
@@ -109,12 +103,12 @@ holder.thumbnail.setOnClickListener(new View.OnClickListener() {
         Intent am;
  switch (holder.getLayoutPosition()){
      case 0:
- am=new Intent(mContext,AccountManager.class);
-mContext.startActivity(am);
+
          return;
      case 1:
-         am=new Intent(mContext,GebetaActivity.class);
-         mContext.startActivity(am);
+
+
+
            return;
      case 2:
 
@@ -122,13 +116,11 @@ mContext.startActivity(am);
             return;
      case 3:
 
-         Intent fb=new Intent(mContext,FacebookActivity.class);
-         mContext.startActivity(fb);
 
          return;
      case 4:
-         Intent extra=new Intent(mContext,giftApps.class);
-        mContext.startActivity(extra);
+
+
              return;
      case 5:
 

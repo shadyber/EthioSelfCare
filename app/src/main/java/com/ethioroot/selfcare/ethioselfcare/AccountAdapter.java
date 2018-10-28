@@ -2,9 +2,6 @@ package com.ethioroot.selfcare.ethioselfcare;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -25,7 +22,7 @@ import java.util.List;
 /**
  * Created by Ravi Tamada on 18/05/16.
  */
-public class MainMenuAdapter extends RecyclerView.Adapter<MainMenuAdapter.MyViewHolder> {
+public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.MyViewHolder> {
 
     private Context mContext;
     private List<MainMenu> menuList;
@@ -48,7 +45,7 @@ public class MainMenuAdapter extends RecyclerView.Adapter<MainMenuAdapter.MyView
 
     }
 
-    public MainMenuAdapter(Context mContext, List<MainMenu> menuList) {
+    public AccountAdapter(Context mContext, List<MainMenu> menuList) {
         this.mContext = mContext;
         this.menuList = menuList;
     }
@@ -93,61 +90,46 @@ public class MainMenuAdapter extends RecyclerView.Adapter<MainMenuAdapter.MyView
         holder.title.setText(menulist.getName());
 
 
-
         Picasso.with(mContext).load(menulist.getThumbnail()).fit().centerCrop()
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.placeholder)
                 .into(holder.thumbnail);
 
 
-holder.overflow.setVisibility(View.INVISIBLE);
+        holder.overflow.setVisibility(View.INVISIBLE);
         setAnimation(holder.itemView, position);
 
-holder.thumbnail.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        Intent am;
- switch (holder.getLayoutPosition()){
-     case 0:
- am=new Intent(mContext,AccountManager.class);
-mContext.startActivity(am);
-         return;
-     case 1:
-         am=new Intent(mContext,GebetaActivity.class);
-         mContext.startActivity(am);
-           return;
-     case 2:
-
-         // call center
-            return;
-     case 3:
-
-         Intent fb=new Intent(mContext,FacebookActivity.class);
-         mContext.startActivity(fb);
-
-         return;
-     case 4:
-         Intent extra=new Intent(mContext,giftApps.class);
-        mContext.startActivity(extra);
-             return;
-     case 5:
-
- default:
-return;
- }
-
-    }
-});
-
-
-/*
-        holder.overflow.setOnClickListener(new View.OnClickListener() {
+        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                showPopupMenu(holder.overflow);
+            public void onClick(View v) {
+                Intent am;
+                switch (holder.getLayoutPosition()) {
+                    case 0:
+
+                        return;
+                    case 1:
+
+                        return;
+                    case 2:
+
+                        // call center
+                        return;
+                    case 3:
+
+                        return;
+                    case 4:
+
+                        return;
+                    case 5:
+
+                    default:
+                        return;
+                }
+
             }
         });
-         */
+
+
     }
 
     /**
