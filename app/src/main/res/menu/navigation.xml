@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/navigation_gebeta"
+        android:icon="@drawable/pack"
+        android:title="@string/title_gebeta" />
+
+    <item
+        android:id="@+id/navigation_account_man"
+        android:icon="@drawable/accbal"
+        android:title="@string/title_account_man" />
+
+    <item
+        android:id="@+id/navigation_extra"
+        android:icon="@drawable/gift"
+        android:title="@string/title_account_man" />
+
+
+</menu>

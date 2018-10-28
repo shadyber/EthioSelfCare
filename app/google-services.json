@@ -1,0 +1,75 @@
+{
+  "project_info": {
+    "project_number": "74354059517",
+    "firebase_url": "https://ethio-self-care.firebaseio.com",
+    "project_id": "ethio-self-care",
+    "storage_bucket": "ethio-self-care.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:74354059517:android:735e14ff789ceeb9",
+        "android_client_info": {
+          "package_name": "com.ethioroot.hopeentertainment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "74354059517-7kmilfvrht63afahi19v6o3sfmb985cf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADzRVBkDsPFLX6JPvbEcSF_Ggft6NH7D0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      },
+      "admob_app_id": "ca-app-pub-3780418992794226~5306527490"
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:74354059517:android:211a68235ccd02d4",
+        "android_client_info": {
+          "package_name": "com.ethioroot.selfcare.ethioselfcare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "74354059517-7kmilfvrht63afahi19v6o3sfmb985cf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADzRVBkDsPFLX6JPvbEcSF_Ggft6NH7D0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      },
+      "admob_app_id": "ca-app-pub-3780418992794226~7630207731"
+    }
+  ],
+  "configuration_version": "1"
+}

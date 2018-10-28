@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Ethio Self Care</string>
+    <string name="title_home">Home</string>
+    <string name="title_gebeta">Gebeta</string>
+    <string name="title_account_man">Balance</string>
+    <string name="action_search">Search</string>
+    <string name="action_profile">Profile</string>
+    <string name="action_get_reward">Get Reward</string>
+    <string name="rate">Rate 5 Star on Google Play</string>
+    <string name="action_share">Share</string>
+    <string name="title_activity_account_manager">Account Manager</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_gift_apps">Gift Applications</string>
+    <string name="title_activity_gebeta">Gebeta</string>
+</resources>
