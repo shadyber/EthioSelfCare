@@ -93,7 +93,7 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
       holder.itemView.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-            //  Toast.makeText(mContext, "you call "+menulist.getPhoneNum(), Toast.LENGTH_SHORT).show();
+          Toast.makeText(mContext, "you call "+menulist.getPhoneNum(), Toast.LENGTH_SHORT).show();
 
           }
       });

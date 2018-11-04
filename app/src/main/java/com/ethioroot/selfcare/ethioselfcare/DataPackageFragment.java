@@ -29,7 +29,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VoicPackageFragment extends Fragment {
+public class DataPackageFragment extends Fragment {
 
 
     EditText phoneNumber;
@@ -182,7 +182,7 @@ public class VoicPackageFragment extends Fragment {
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 1);
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new VoicPackageFragment.GridSpacingItemDecoration(2, dpToPx(10), true));
+        recyclerView.addItemDecoration(new DataPackageFragment.GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
@@ -233,12 +233,12 @@ String number=phoneNumber.getText().toString().replace("+251","0").replace(" ","
                 R.drawable.data,
                 R.drawable.sms};
 
-        PackagesMenu a = new PackagesMenu("3 Birr 8 Minute ","*999*1*1*1*2*1"+"+number+"+"*1#","Daily",  covers[0]);
+        PackagesMenu a = new PackagesMenu("3 Birr 8 MB ","*999*1*1*1*2*1"+"+number+"+"*1#","Daily",  covers[0]);
         menuList.add(a);
 
-        a = new PackagesMenu("5 Birr 13 Minute","*999*1*1*1*2*2*"+number+"1#","Daily",  covers[0]);
+        a = new PackagesMenu("5 Birr 13 MB","*999*1*1*1*2*2*"+number+"1#","Daily",  covers[0]);
         menuList.add(a);
-        a = new PackagesMenu("10 Birr 28 Minute","*999*1*1*1*2*3*1#"+number,"Daily",  covers[0]);
+        a = new PackagesMenu("10 Birr 28 MB","*999*1*1*1*2*3*1#"+number,"Daily",  covers[0]);
         menuList.add(a);
 
         a = new PackagesMenu("Account Manager","994"+number,"Daily", covers[0]);
