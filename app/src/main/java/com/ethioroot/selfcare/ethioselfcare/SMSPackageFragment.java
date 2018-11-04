@@ -8,14 +8,19 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -170,11 +175,29 @@ public class SMSPackageFragment extends Fragment {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 
                 txtphone.setText(phoneNumber.getText().toString().replace("+251","0"));
+                prepareAlbumsforother();
                 return false;
             }
         });
 
+        phoneNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                txtphone.setText(phoneNumber.getText().toString().replace("+251","0").replace(" ",""));
+                radioother.setChecked(true);
+prepareAlbumsforother();
+            }
+        });
 
 
         menuList = new ArrayList<>();
@@ -195,7 +218,8 @@ public class SMSPackageFragment extends Fragment {
                 R.anim.bounce);
 
 
-      }
+
+    }
     /**
      * Adding few albums for testing
      */
@@ -207,46 +231,63 @@ public class SMSPackageFragment extends Fragment {
                 R.drawable.data,
                 R.drawable.sms};
 
-        PackagesMenu a = new PackagesMenu("3 Birr 8 Minute ","*999*1*1*1*2*1*1#","Daily",  covers[0]);
+        PackagesMenu a = new PackagesMenu("2 Birr 18 SMS","*999*1#1#3#1#1#1#","24 Hr",  covers[2]);
         menuList.add(a);
 
-        a = new PackagesMenu("5 Birr 13 Minute","*999*1*1*1*2*2*1#","Daily",  covers[0]);
+        a = new PackagesMenu("3 Birr 35 SMS","*999*1#1#3#1#2#1#","24 Hr",  covers[2]);
         menuList.add(a);
-        a = new PackagesMenu("10 Birr 28 Minute","*999*1*1*1*2*3*1#","Daily",  covers[0]);
+        a = new PackagesMenu("5 Birr 70 SMS","*999*1#1#3#1#3#1#","24 Hr",  covers[2]);
+        menuList.add(a);
+//week
+
+
+        a = new PackagesMenu("10 Birr 140 SMS","*999*1#1#3#2#1#1#","1 Week",  covers[2]);
         menuList.add(a);
 
-        a = new PackagesMenu("Account Manager","994","Daily",  covers[0]);
+        a = new PackagesMenu("15 Birr 283 SMS","*999*1#1#3#2#2#1#","1 Week",  covers[2]);
         menuList.add(a);
-        a = new PackagesMenu("Account Manager","994","Daily",  covers[0]);
+// monthly
+
+        a = new PackagesMenu("30 Birr 525 SMS","*999*1#1#3#3#1#1#","1 Month",  covers[2]);
         menuList.add(a);
-        a = new PackagesMenu("Account Manager","994","Daily",  covers[0]);
+
+        a = new PackagesMenu("50 Birr 1050 SMS","*999*1#1#3#3#2#1#","1 Month",  covers[2]);
         menuList.add(a);
 
         adapter.notifyDataSetChanged();
     }
 
     private void prepareAlbumsforother() {
-String number=phoneNumber.getText().toString().replace("+251","0").replace(" ","");
+String number=txtphone.getText().toString().replace("+251","0").replace(" ","");
         menuList.clear();
         int[] covers = new int[]{
                 R.drawable.voice,
                 R.drawable.data,
                 R.drawable.sms};
 
-        PackagesMenu a = new PackagesMenu("3 Birr 8 Minute ","*999*1*1*1*2*1"+"+number+"+"*1#","Daily",  covers[0]);
+        PackagesMenu a = new PackagesMenu("2 Birr 18 SMS","*999*1#1#3#1#1#"+number+"#1#","24 Hr",  covers[2]);
         menuList.add(a);
 
-        a = new PackagesMenu("5 Birr 13 Minute","*999*1*1*1*2*2*"+number+"1#","Daily",  covers[0]);
+        a = new PackagesMenu("3 Birr 35 SMS","*999*1#1#3#1#2#"+number+"#1#","24 Hr",  covers[2]);
         menuList.add(a);
-        a = new PackagesMenu("10 Birr 28 Minute","*999*1*1*1*2*3*1#"+number,"Daily",  covers[0]);
+        a = new PackagesMenu("5 Birr 70 SMS","*999*1#1#3#1#3#"+number+"#1#","24 Hr",  covers[2]);
+        menuList.add(a);
+//week
+
+
+        a = new PackagesMenu("10 Birr 140 SMS","*999*1#1#3#2#1#"+number+"#1#","1 Week",  covers[2]);
         menuList.add(a);
 
-        a = new PackagesMenu("Account Manager","994"+number,"Daily", covers[0]);
+        a = new PackagesMenu("15 Birr 283 SMS","*999*1#1#3#2#2#"+number+"#1#","1 Week",  covers[2]);
         menuList.add(a);
-        a = new PackagesMenu("Account Manager","994"+number,"Daily", covers[0]);
+// monthly
+
+        a = new PackagesMenu("30 Birr 525 SMS","*999*1#1#3#3#1#"+number+"#1#","1 Month",  covers[2]);
         menuList.add(a);
-        a = new PackagesMenu("Account Manager","994"+number,"Daily",  covers[0]);
+
+        a = new PackagesMenu("50 Birr 1050 SMS","*999*1#1#3#3#2#"+number+"#1#","1 Month",  covers[2]);
         menuList.add(a);
+
 
         adapter.notifyDataSetChanged();
     }

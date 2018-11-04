@@ -8,14 +8,19 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -175,6 +180,24 @@ public class VoicPackageFragment extends Fragment {
         });
 
 
+        phoneNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                txtphone.setText(phoneNumber.getText().toString().replace("+251","0").replace(" ",""));
+                radioother.setChecked(true);
+prepareAlbumsforother();
+            }
+        });
 
 
         menuList = new ArrayList<>();
@@ -207,46 +230,173 @@ public class VoicPackageFragment extends Fragment {
                 R.drawable.data,
                 R.drawable.sms};
 
-        PackagesMenu a = new PackagesMenu("3 Birr 8 Minute ","*999*1*1*1*2*1*1#","Daily",  covers[0]);
+        PackagesMenu a = new PackagesMenu("3 Birr 8 Minute ","*999*1#1#1#2#1#1#","24 Hr",  covers[0]);
         menuList.add(a);
 
-        a = new PackagesMenu("5 Birr 13 Minute","*999*1*1*1*2*2*1#","Daily",  covers[0]);
-        menuList.add(a);
-        a = new PackagesMenu("10 Birr 28 Minute","*999*1*1*1*2*3*1#","Daily",  covers[0]);
+        a = new PackagesMenu("5 Birr 13 Minute","*999*1#1#1#2#2#1#","24 Hr",  covers[0]);
         menuList.add(a);
 
-        a = new PackagesMenu("Account Manager","994","Daily",  covers[0]);
+        a = new PackagesMenu("10 Birr 28 Minute","*999*1#1#1#2#3#1#","24Hr",  covers[0]);
         menuList.add(a);
-        a = new PackagesMenu("Account Manager","994","Daily",  covers[0]);
+
+        a = new PackagesMenu("15 Birr 46 Minute","*999*1#1#1#3#1#1#","1 Week",  covers[0]);
         menuList.add(a);
-        a = new PackagesMenu("Account Manager","994","Daily",  covers[0]);
+
+
+        a = new PackagesMenu("20 Birr  65 Minute","*999*1#1#1#3#2#1#","1 Week",  covers[0]);
         menuList.add(a);
+
+
+        a = new PackagesMenu("60 Birr 166 Minute, 5 MB , 30 SMS","*999*1#1#1#4#1#1#","1 Month",  covers[0]);
+        menuList.add(a);
+
+
+        a = new PackagesMenu("100  Birr 280 Minute 5MB , 30 SMS","*999*1#1#1#4#2#1#","1 Month",  covers[0]);
+        menuList.add(a);
+
+        a = new PackagesMenu("140 Birr  415 Minutes , 5MB, 50 SMS","*999*1#1#1#4#3#1#","1 Month",  covers[0]);
+        menuList.add(a);
+
+
+
+        a = new PackagesMenu("150 Birr 450 Minute 5 MB, 50 SMS","*999*1#1#1#4#4#1#","1 Month",  covers[0]);
+        menuList.add(a);
+
+
+        a = new PackagesMenu("200  Birr 450  Minutes , 5MB Data , 50 SMS ","*999*1#1#1#4#5#1#","1 Month",  covers[0]);
+        menuList.add(a);
+
+
+        a = new PackagesMenu("250  Birr 750  Minutes , 5MB Data , 50 SMS ","*999*1#1#1#4#6#1#","1 Month",  covers[0]);
+        menuList.add(a);
+
+
+        a = new PackagesMenu("270  Birr 830  Minutes , 5MB Data , 80 SMS ","*999*1#1#1#4#7#1#","1 Month",  covers[0]);
+        menuList.add(a);
+
+
+        a = new PackagesMenu("300  Birr 930  Minutes , 5MB Data , 80 SMS ","*999*1#1#1#4#8#1#","1 Month",  covers[0]);
+        menuList.add(a);
+
+        a = new PackagesMenu("350  Birr 1080  Minutes , 50MB Data , 80 SMS ","*999*1#1#1#4#9#1#","1 Month",  covers[0]);
+        menuList.add(a);
+
+        a = new PackagesMenu("400  Birr 1230  Minutes , 50MB Data , 80 SMS ","*999*1#1#1#4#10#1#","1 Month",  covers[0]);
+        menuList.add(a);
+
+        a = new PackagesMenu("450  Birr 1380  Minutes , 50MB Data , 80 SMS ","*999*1#1#1#4#11#1#","1 Month",  covers[0]);
+        menuList.add(a);
+        a = new PackagesMenu("500  Birr 1545  Minutes , 50MB Data , 100 SMS ","*999*1#1#1#4#12#1#","1 Month",  covers[0]);
+        menuList.add(a);
+
+        a = new PackagesMenu("540  Birr 1660  Minutes , 50MB Data , 100 SMS ","*999*1#1#1#4#13#1#","1 Month",  covers[0]);
+        menuList.add(a);
+
+        a = new PackagesMenu("1350  Birr 4150  Minutes , 50MB Data , 350 SMS ","*999*1#1#1#4#15#1#","1 Month",  covers[0]);
+        menuList.add(a);
+// night
+        a = new PackagesMenu("3.49  Birr 30  Minutes , 50MB Data , 350 SMS ","*999*1#1#1#1#1#1#","Tonight",  covers[0]);
+        menuList.add(a);
+
+        a = new PackagesMenu("4.99  Birr 60  Minutes , 50MB Data , 350 SMS ","*999*1#1#1#1#2#1#","Tonight",  covers[0]);
+        menuList.add(a);
+        a = new PackagesMenu("6.99  Birr 120  Minutes , 50MB Data , 350 SMS ","*999*1#1#1#1#3#1#","Tonight",  covers[0]);
+        menuList.add(a);
+
+        a = new PackagesMenu("9.99  Birr 420  Minutes , 50MB Data , 350 SMS ","*999*1#1#1#1#4#1#","Tonight",  covers[0]);
+        menuList.add(a);
+
 
         adapter.notifyDataSetChanged();
     }
 
     private void prepareAlbumsforother() {
-String number=phoneNumber.getText().toString().replace("+251","0").replace(" ","");
+String number=txtphone.getText().toString().replace("+251","0").replace(" ","");
         menuList.clear();
         int[] covers = new int[]{
                 R.drawable.voice,
                 R.drawable.data,
                 R.drawable.sms};
 
-        PackagesMenu a = new PackagesMenu("3 Birr 8 Minute ","*999*1*1*1*2*1"+"+number+"+"*1#","Daily",  covers[0]);
+        PackagesMenu a = new PackagesMenu("3 Birr 8 Minute ","*999*1#2#1#2#1#"+number+"#1#","24 Hr",  covers[0]);
         menuList.add(a);
 
-        a = new PackagesMenu("5 Birr 13 Minute","*999*1*1*1*2*2*"+number+"1#","Daily",  covers[0]);
-        menuList.add(a);
-        a = new PackagesMenu("10 Birr 28 Minute","*999*1*1*1*2*3*1#"+number,"Daily",  covers[0]);
+        a = new PackagesMenu("5 Birr 13 Minute","*999*1#2#1#2#2#"+number+"#1#","24 Hr",  covers[0]);
         menuList.add(a);
 
-        a = new PackagesMenu("Account Manager","994"+number,"Daily", covers[0]);
+        a = new PackagesMenu("10 Birr 28 Minute","*999*1#2#1#2#3#"+number+"#1#","24Hr",  covers[0]);
         menuList.add(a);
-        a = new PackagesMenu("Account Manager","994"+number,"Daily", covers[0]);
+
+        a = new PackagesMenu("15 Birr 46 Minute","*999*1#2#1#3#1#"+number+"#1#","1 Week",  covers[0]);
         menuList.add(a);
-        a = new PackagesMenu("Account Manager","994"+number,"Daily",  covers[0]);
+
+
+        a = new PackagesMenu("20 Birr  65 Minute","*999*1#2#1#3#2#"+number+"#1#","1 Week",  covers[0]);
         menuList.add(a);
+
+
+        a = new PackagesMenu("60 Birr 166 Minute, 5 MB , 30 SMS","*999*1#2#1#4#1#"+number+"#1#","1 Month",  covers[0]);
+        menuList.add(a);
+
+
+        a = new PackagesMenu("100  Birr 280 Minute 5MB , 30 SMS","*999*1#2#1#4#2#"+number+"#1#","1 Month",  covers[0]);
+        menuList.add(a);
+
+        a = new PackagesMenu("140 Birr  415 Minutes , 5MB, 50 SMS","*999*1#2#1#4#3#"+number+"#1#","1 Month",  covers[0]);
+        menuList.add(a);
+
+
+
+        a = new PackagesMenu("150 Birr 450 Minute 5 MB, 50 SMS","*999*1#2#1#4#4#"+number+"#1#","1 Month",  covers[0]);
+        menuList.add(a);
+
+
+        a = new PackagesMenu("200  Birr 450  Minutes , 5MB Data , 50 SMS ","*999*1#2#1#4#5#"+number+"#1#","1 Month",  covers[0]);
+        menuList.add(a);
+
+
+        a = new PackagesMenu("250  Birr 750  Minutes , 5MB Data , 50 SMS ","*999*1#2#1#4#6#"+number+"#1#","1 Month",  covers[0]);
+        menuList.add(a);
+
+
+        a = new PackagesMenu("270  Birr 830  Minutes , 5MB Data , 80 SMS ","*999*1#2#1#4#7#"+number+"#1#","1 Month",  covers[0]);
+        menuList.add(a);
+
+
+        a = new PackagesMenu("300  Birr 930  Minutes , 5MB Data , 80 SMS ","*999*1#2#1#4#8#"+number+"#1#","1 Month",  covers[0]);
+        menuList.add(a);
+
+        a = new PackagesMenu("350  Birr 1080  Minutes , 50MB Data , 80 SMS ","*999*1#2#1#4#9#"+number+"#1#","1 Month",  covers[0]);
+        menuList.add(a);
+
+        a = new PackagesMenu("400  Birr 1230  Minutes , 50MB Data , 80 SMS ","*999*1#2#1#4#10#"+number+"#1#","1 Month",  covers[0]);
+        menuList.add(a);
+
+        a = new PackagesMenu("450  Birr 1380  Minutes , 50MB Data , 80 SMS ","*999*1#2#1#4#11#"+number+"#1#","1 Month",  covers[0]);
+        menuList.add(a);
+        a = new PackagesMenu("500  Birr 1545  Minutes , 50MB Data , 100 SMS ","*999*1#2#1#4#12#"+number+"#1#","1 Month",  covers[0]);
+        menuList.add(a);
+
+        a = new PackagesMenu("540  Birr 1660  Minutes , 50MB Data , 100 SMS ","*999*1#2#1#4#13#"+number+"#1#","1 Month",  covers[0]);
+        menuList.add(a);
+
+        a = new PackagesMenu("1350  Birr 4150  Minutes , 50MB Data , 350 SMS ","*999*1#2#1#4#15#"+number+"#1#","1 Month",  covers[0]);
+        menuList.add(a);
+
+
+
+// night
+        a = new PackagesMenu("3.49  Birr 30  Minutes , 50MB Data , 350 SMS ","*999*1#1#1#1#1#"+number+"#1#","Tonight",  covers[0]);
+        menuList.add(a);
+
+        a = new PackagesMenu("4.99  Birr 60  Minutes , 50MB Data , 350 SMS ","*999*1#1#1#1#2#"+number+"#1#","Tonight",  covers[0]);
+        menuList.add(a);
+        a = new PackagesMenu("6.99  Birr 120  Minutes , 50MB Data , 350 SMS ","*999*1#1#1#1#3#"+number+"#1#","Tonight",  covers[0]);
+        menuList.add(a);
+
+        a = new PackagesMenu("9.99  Birr 420  Minutes , 50MB Data , 350 SMS ","*999*1#1#1#1#4#"+number+"#1#","Tonight",  covers[0]);
+        menuList.add(a);
+
 
         adapter.notifyDataSetChanged();
     }

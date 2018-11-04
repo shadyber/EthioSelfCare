@@ -8,14 +8,19 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -97,7 +102,6 @@ public class DataPackageFragment extends Fragment {
 
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         // Defines the xml file for the fragment
@@ -169,11 +173,30 @@ public class DataPackageFragment extends Fragment {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 
-                txtphone.setText(phoneNumber.getText().toString().replace("+251","0"));
+                txtphone.setText(txtphone.getText().toString().replace("+251","0"));
+                prepareAlbumsforother();
                 return false;
             }
         });
 
+        phoneNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                txtphone.setText(phoneNumber.getText().toString().replace("+251","0").replace(" ",""));
+                radioother.setChecked(true);
+prepareAlbumsforother();
+            }
+        });
 
 
 
@@ -195,7 +218,8 @@ public class DataPackageFragment extends Fragment {
                 R.anim.bounce);
 
 
-      }
+
+    }
     /**
      * Adding few albums for testing
      */
@@ -206,21 +230,57 @@ public class DataPackageFragment extends Fragment {
                 R.drawable.voice,
                 R.drawable.data,
                 R.drawable.sms};
-
-        PackagesMenu a = new PackagesMenu("3 Birr 8 Minute ","*999*1*1*1*2*1*1#","Daily",  covers[0]);
+    //daily
+        PackagesMenu a = new PackagesMenu("3 Birr 25 MB","*999*1#1#2#1#1#1#","24 Hr",  covers[1]);
+        menuList.add(a);
+        a = new PackagesMenu("5 Birr 45 MB ","*999*1#1#2#1#2#1#","24 Hr",  covers[1]);
+        menuList.add(a);
+        a = new PackagesMenu("10 Birr 100 MB","*999*1#1#2#1#3#1#","24 Hr",  covers[1]);
+        menuList.add(a);
+        a = new PackagesMenu("15 Birr 200  MB","*999*1#1#2#1#4#1#","24 Hr",  covers[1]);
+        menuList.add(a);
+       a = new PackagesMenu("35 Birr 500 MB","*999*1#1#2#1#5#1#","24 Hr",  covers[1]);
+        menuList.add(a);
+// weekly
+        a = new PackagesMenu("50 Birr 500 MB","*999*1#1#2#2#1#1#","1 Week",  covers[1]);
+        menuList.add(a);
+        a = new PackagesMenu("60 Birr 700 MB","*999*1#1#2#2#2#1#","1 Week",  covers[1]);
+        menuList.add(a);
+        a = new PackagesMenu("80 Birr 1024 MB","*999*1#1#2#2#3#1#","1 Week",  covers[1]);
+        menuList.add(a);
+   // monthly
+        a = new PackagesMenu("55 Birr 500 MB","*999*1#1#2#3#1#1#","1 Month",  covers[1]);
+        menuList.add(a);
+        a = new PackagesMenu("100 Birr 1 GB ","*999*1#1#2#3#2#1#","1 Month",  covers[1]);
         menuList.add(a);
 
-        a = new PackagesMenu("5 Birr 13 Minute","*999*1*1*1*2*2*1#","Daily",  covers[0]);
+        a = new PackagesMenu("190 Birr 2GB","*999*1#1#2#3#3#1#","1 Month",  covers[1]);
         menuList.add(a);
-        a = new PackagesMenu("10 Birr 28 Minute","*999*1*1*1*2*3*1#","Daily",  covers[0]);
+        a = new PackagesMenu("350 Birr 4 GB","*999*1#1#2#3#4#1#","1 Month",  covers[1]);
+        menuList.add(a);
+        a = new PackagesMenu("600 Birr 8 GB","*999*1#1#2#3#5#1#","1 Month",  covers[1]);
+        menuList.add(a);
+        a = new PackagesMenu("700 Birr 10 GB","*999*1#1#2#3#6#1#","1 Month",  covers[1]);
+        menuList.add(a);
+        a = new PackagesMenu("1300 Birr 20 GB","*999*1#1#2#3#7#1#","1 Month",  covers[1]);
+        menuList.add(a);
+        a = new PackagesMenu("1800 Birr 30 GB","*999*1#1#2#3#8#1#","1 Month",  covers[1]);
         menuList.add(a);
 
-        a = new PackagesMenu("Account Manager","994","Daily",  covers[0]);
+        // night
+
+        a = new PackagesMenu("3 Birr 50 MB","*999*1#1#2#4#1#1#","Tonight",  covers[1]);
         menuList.add(a);
-        a = new PackagesMenu("Account Manager","994","Daily",  covers[0]);
+
+        a = new PackagesMenu("5 Birr 100 MB","*999*1#1#2#4#2#1#","Tonight",  covers[1]);
         menuList.add(a);
-        a = new PackagesMenu("Account Manager","994","Daily",  covers[0]);
+        a = new PackagesMenu("7 Birr 160 MB","*999*1#1#2#4#3#1#","Tonight",  covers[1]);
         menuList.add(a);
+        a = new PackagesMenu("35 Birr 500 MB","*999*1#1#2#4#4#1#","Tonight",  covers[1]);
+        menuList.add(a);
+
+
+
 
         adapter.notifyDataSetChanged();
     }
@@ -232,21 +292,57 @@ String number=phoneNumber.getText().toString().replace("+251","0").replace(" ","
                 R.drawable.voice,
                 R.drawable.data,
                 R.drawable.sms};
-
-        PackagesMenu a = new PackagesMenu("3 Birr 8 MB ","*999*1*1*1*2*1"+"+number+"+"*1#","Daily",  covers[0]);
+//daily
+        PackagesMenu a = new PackagesMenu("3 Birr 25 MB","*999*1#1#2#1#1#"+number+"#1#","24 Hr",  covers[1]);
+        menuList.add(a);
+        a = new PackagesMenu("5 Birr 45 MB ","*999*1#1#2#1#2#"+number+"#1#","24 Hr",  covers[1]);
+        menuList.add(a);
+        a = new PackagesMenu("10 Birr 100 MB","*999*1#1#2#1#3#"+number+"#1#","24 Hr",  covers[1]);
+        menuList.add(a);
+        a = new PackagesMenu("15 Birr 200  MB","*999*1#1#2#1#4#"+number+"#1#","24 Hr",  covers[1]);
+        menuList.add(a);
+        a = new PackagesMenu("35 Birr 500 MB","*999*1#1#2#1#5#"+number+"#1#","24 Hr",  covers[1]);
+        menuList.add(a);
+// weekly
+        a = new PackagesMenu("50 Birr 500 MB","*999*1#1#2#2#1#"+number+"#1#","1 Week",  covers[1]);
+        menuList.add(a);
+        a = new PackagesMenu("60 Birr 700 MB","*999*1#1#2#2#2#"+number+"#1#","1 Week",  covers[1]);
+        menuList.add(a);
+        a = new PackagesMenu("80 Birr 1024 MB","*999*1#1#2#2#3#"+number+"#1#","1 Week",  covers[1]);
+        menuList.add(a);
+        // monthly
+        a = new PackagesMenu("55 Birr 500 MB","*999*1#1#2#3#1#"+number+"#1#","1 Month",  covers[1]);
+        menuList.add(a);
+        a = new PackagesMenu("100 Birr 1 GB ","*999*1#1#2#3#2#"+number+"#1#","1 Month",  covers[1]);
         menuList.add(a);
 
-        a = new PackagesMenu("5 Birr 13 MB","*999*1*1*1*2*2*"+number+"1#","Daily",  covers[0]);
+        a = new PackagesMenu("190 Birr 2GB","*999*1#1#2#3#3#"+number+"#1#","1 Month",  covers[1]);
         menuList.add(a);
-        a = new PackagesMenu("10 Birr 28 MB","*999*1*1*1*2*3*1#"+number,"Daily",  covers[0]);
+        a = new PackagesMenu("350 Birr 4 GB","*999*1#1#2#3#4#"+number+"#1#","1 Month",  covers[1]);
+        menuList.add(a);
+        a = new PackagesMenu("600 Birr 8 GB","*999*1#1#2#3#5#"+number+"#1#","1 Month",  covers[1]);
+        menuList.add(a);
+        a = new PackagesMenu("700 Birr 10 GB","*999*1#1#2#3#6#"+number+"#1#","1 Month",  covers[1]);
+        menuList.add(a);
+        a = new PackagesMenu("1300 Birr 20 GB","*999*1#1#2#3#7#"+number+"#1#","1 Month",  covers[1]);
+        menuList.add(a);
+        a = new PackagesMenu("1800 Birr 30 GB","*999*1#1#2#3#8#"+number+"#1#","1 Month",  covers[1]);
         menuList.add(a);
 
-        a = new PackagesMenu("Account Manager","994"+number,"Daily", covers[0]);
+        // night
+
+        a = new PackagesMenu("3 Birr 50 MB","*999*1#1#2#4#1#"+number+"#1#","Tonight",  covers[1]);
         menuList.add(a);
-        a = new PackagesMenu("Account Manager","994"+number,"Daily", covers[0]);
+
+        a = new PackagesMenu("5 Birr 100 MB","*999*1#1#2#4#2#"+number+"#1#","Tonight",  covers[1]);
         menuList.add(a);
-        a = new PackagesMenu("Account Manager","994"+number,"Daily",  covers[0]);
+        a = new PackagesMenu("7 Birr 160 MB","*999*1#1#2#4#3#"+number+"#1#","Tonight",  covers[1]);
         menuList.add(a);
+        a = new PackagesMenu("35 Birr 500 MB","*999*1#1#2#4#4#"+number+"#1#","Tonight",  covers[1]);
+        menuList.add(a);
+
+
+
 
         adapter.notifyDataSetChanged();
     }
