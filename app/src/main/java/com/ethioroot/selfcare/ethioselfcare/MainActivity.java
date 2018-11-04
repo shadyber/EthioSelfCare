@@ -108,8 +108,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 return true;
             case R.id.action_profile:
-              //  Intent profile =new Intent(MainActivity.this,ProfileActivity.class);
-                //startActivity(profile);
+              Intent profile =new Intent(MainActivity.this,ProfileAcivity.class);
+               startActivity(profile);
                 return true;
             default:
 

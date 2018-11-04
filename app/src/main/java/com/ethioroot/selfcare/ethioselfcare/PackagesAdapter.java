@@ -22,22 +22,23 @@ import java.util.List;
 /**
  * Created by Ravi Tamada on 18/05/16.
  */
-public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.MyViewHolder> {
+public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyViewHolder> {
 
     private Context mContext;
-    private List<MainMenu> menuList;
+    private List<PackagesMenu> menuList;
 
 
     public Animation animBounce,animZoomin,animZoomout;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView title, count;
+        public TextView title, count, period;
         public ImageView thumbnail, overflow;
 
         public MyViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.title);
             count = (TextView) view.findViewById(R.id.count);
+            period = (TextView) view.findViewById(R.id.period);
             thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
             overflow = (ImageView) view.findViewById(R.id.overflow);
 
@@ -45,7 +46,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.MyViewHo
 
     }
 
-    public AccountAdapter(Context mContext, List<MainMenu> menuList) {
+    public PackagesAdapter(Context mContext, List<PackagesMenu> menuList) {
         this.mContext = mContext;
         this.menuList = menuList;
     }
@@ -53,7 +54,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.MyViewHo
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.album_card, parent, false);
+                .inflate(R.layout.package_card, parent, false);
 
         return new MyViewHolder(itemView);
     }
@@ -86,9 +87,20 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-        MainMenu menulist = menuList.get(position);
+        final PackagesMenu menulist = menuList.get(position);
+
+
+      holder.itemView.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            //  Toast.makeText(mContext, "you call "+menulist.getPhoneNum(), Toast.LENGTH_SHORT).show();
+
+          }
+      });
         holder.title.setText(menulist.getName());
 
+holder.count.setText(menulist.getPhoneNum());
+holder.period.setText(menulist.getPeriod());
 
         Picasso.with(mContext).load(menulist.getThumbnail()).fit().centerCrop()
                 .placeholder(R.drawable.placeholder)
@@ -96,43 +108,17 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.MyViewHo
                 .into(holder.thumbnail);
 
 
-        holder.overflow.setVisibility(View.INVISIBLE);
         setAnimation(holder.itemView, position);
 
-        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
+
+/*
+        holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent am;
-                switch (holder.getLayoutPosition()) {
-                    case 0:
- Intent recharg=new Intent(mContext,RechargeActivity.class);
- mContext.startActivity(recharg);
-                        return;
-                    case 1:
-                        PhoneCaller.MakeCall("*804#",mContext);
-                        return;
-                    case 2:
-                        Intent transfer=new Intent(mContext,TransferActivity.class);
-                        mContext.startActivity(transfer);
-
-                        return;
-                    case 3:
-                        Intent request=new Intent(mContext,RequestActitivy.class);
-                        mContext.startActivity(request);
-                        return;
-                    case 4:
-
-                        return;
-                    case 5:
-
-                    default:
-                        return;
-                }
-
+            public void onClick(View view) {
+                showPopupMenu(holder.overflow);
             }
         });
-
-
+         */
     }
 
     /**

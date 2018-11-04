@@ -172,9 +172,9 @@ public class GebetaActivity extends AppCompatActivity {
                 R.drawable.voice,
                 R.drawable.data,
                 R.drawable.sms,
-                R.drawable.ic_launcher_foreground,
-                R.drawable.ic_launcher_foreground,
-                R.drawable.ic_launcher_foreground};
+                R.drawable.vip,
+                R.drawable.reward,
+                R.drawable.interstitial};
 
         MainMenu a = new MainMenu("Voice Package",  covers[0]);
         menuList.add(a);
@@ -189,7 +189,7 @@ public class GebetaActivity extends AppCompatActivity {
         menuList.add(a);
 
 
-        a = new MainMenu("Video",  covers[4]);
+        a = new MainMenu("Reward Video",  covers[4]);
         menuList.add(a);
 
         a = new MainMenu("Banner",  covers[5]);

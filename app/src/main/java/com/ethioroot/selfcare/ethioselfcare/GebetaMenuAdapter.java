@@ -97,36 +97,33 @@ public class GebetaMenuAdapter extends RecyclerView.Adapter<GebetaMenuAdapter.My
                 .into(holder.thumbnail);
 
 
-holder.overflow.setVisibility(View.INVISIBLE);
-        setAnimation(holder.itemView, position);
 
-holder.thumbnail.setOnClickListener(new View.OnClickListener() {
+
+        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
         Intent am;
  switch (holder.getLayoutPosition()){
      case 0:
- am=new Intent(mContext,AccountManager.class);
+am=new Intent(mContext,VoicePackageActivity.class);
 mContext.startActivity(am);
+
          return;
      case 1:
-         am=new Intent(mContext,GebetaActivity.class);
+         am=new Intent(mContext,DataPackageActivity.class);
          mContext.startActivity(am);
            return;
      case 2:
+         am=new Intent(mContext,SMSPackageActivity.class);
+         mContext.startActivity(am);
 
-         // call center
             return;
      case 3:
 
-         Intent fb=new Intent(mContext,FacebookActivity.class);
-         mContext.startActivity(fb);
-
-         return;
+    return;
      case 4:
-         Intent extra=new Intent(mContext,giftApps.class);
-        mContext.startActivity(extra);
-             return;
+
+               return;
      case 5:
 
  default:

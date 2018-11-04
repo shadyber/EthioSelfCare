@@ -117,7 +117,7 @@ mContext.startActivity(am);
          mContext.startActivity(am);
            return;
      case 2:
-
+PhoneCaller.MakeCall("994",mContext);
          // call center
             return;
      case 3:
@@ -131,7 +131,8 @@ mContext.startActivity(am);
         mContext.startActivity(extra);
              return;
      case 5:
-
+         Intent profile=new Intent(mContext,ProfileAcivity                                                                                                                                                                                  .class);
+         mContext.startActivity(profile);
  default:
 return;
  }

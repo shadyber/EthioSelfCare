@@ -171,12 +171,12 @@ public class AccountManager extends AppCompatActivity {
      */
     private void prepareAlbums() {
         int[] covers = new int[]{
-                R.drawable.ic_launcher_foreground,
-                R.drawable.ic_launcher_foreground,
-                R.drawable.ic_launcher_foreground,
-                R.drawable.ic_launcher_foreground,
-                R.drawable.ic_launcher_foreground,
-                R.drawable.ic_launcher_foreground};
+                R.drawable.recharge,
+                R.drawable.wallet,
+                R.drawable.transfer,
+                R.drawable.callme,
+                R.drawable.reward,
+                R.drawable.interstitial};
 
         MainMenu a = new MainMenu("Recharge",  covers[0]);
         menuList.add(a);

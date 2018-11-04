@@ -13,4 +13,5 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_gift_apps">Gift Applications</string>
     <string name="title_activity_gebeta">Gebeta</string>
+    <string name="title_activity_recharge">Recharge Account Balance</string>
 </resources>
