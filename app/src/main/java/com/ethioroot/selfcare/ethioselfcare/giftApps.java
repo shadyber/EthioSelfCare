@@ -98,6 +98,14 @@ prepareAlbums();
         a = new AppsMenu("Amharic keyboard FynGeez - Ethiopia","https://play.google.com/store/apps/details?id=com.fynsystems.fyngeez","com.fynsystems.fyngeez", "https://lh3.googleusercontent.com/po1rzTYojq9GTs5wN08gMgNshdBy6Q4snnjOT9SvnnEDtIgqpY5ZAKI6cpzHaEkJsbE=s180-rw");
         menuList.add(a);
 
+
+        a = new AppsMenu("Edna Mall","https://play.google.com/store/apps/details?id=com.ednamall.ednamall.ednamall2&hl=en","com.ednamall.ednamall.ednamall2", "https://lh3.googleusercontent.com/xRCupukA3T_BmJW63cNTycztEMegJ9dowiymIAOAlnY1tL-2tVIcpxFlXjuN-zFToNFP=s180-rw");
+        menuList.add(a);
+
+        a = new AppsMenu("Ethiopian Calendar","https://play.google.com/store/apps/details?id=com.shalom.calendar&rdid=com.shalom.calendar","com.shalom.calendar", "https://lh3.googleusercontent.com/tMB_0w6F-YQxn2crpViaDQH_yCU2JLx06X06aDl1pzj_r9i9j1fEJfkrQXSj3XxOTh0=s180-rw");
+        menuList.add(a);
+
+
         adapter.notifyDataSetChanged();
     }
 

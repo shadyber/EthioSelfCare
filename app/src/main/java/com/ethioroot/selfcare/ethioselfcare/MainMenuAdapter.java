@@ -131,8 +131,13 @@ PhoneCaller.MakeCall("994",mContext);
         mContext.startActivity(extra);
              return;
      case 5:
+         Intent emergency=new Intent(mContext,EmergencyActivity.class);
+         mContext.startActivity(emergency);
+         return;
+     case 6:
          Intent profile=new Intent(mContext,ProfileAcivity                                                                                                                                                                                  .class);
          mContext.startActivity(profile);
+         return;
  default:
 return;
  }
