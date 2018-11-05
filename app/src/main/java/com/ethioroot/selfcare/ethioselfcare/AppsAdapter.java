@@ -2,6 +2,7 @@ package com.ethioroot.selfcare.ethioselfcare;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -25,24 +26,28 @@ import java.util.List;
 public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.MyViewHolder> {
 
     private Context mContext;
-    private List<MainMenu> menuList;
+    private List<AppsMenu> menuList;
+
+
+    public Animation animBounce,animZoomin,animZoomout;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView title, count;
+        public TextView title, count, period;
         public ImageView thumbnail, overflow;
 
         public MyViewHolder(View view) {
             super(view);
-            title =  view.findViewById(R.id.title);
-            count =  view.findViewById(R.id.count);
-            thumbnail =  view.findViewById(R.id.thumbnail);
-            overflow =  view.findViewById(R.id.overflow);
+            title = (TextView) view.findViewById(R.id.title);
+            count = (TextView) view.findViewById(R.id.count);
+            period = (TextView) view.findViewById(R.id.period);
+            thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
+            overflow = (ImageView) view.findViewById(R.id.overflow);
 
         }
 
     }
 
-    public AppsAdapter(Context mContext, List<MainMenu> menuList) {
+    public AppsAdapter(Context mContext, List<AppsMenu> menuList) {
         this.mContext = mContext;
         this.menuList = menuList;
     }
@@ -50,7 +55,7 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.MyViewHolder> 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.app_card, parent, false);
+                .inflate(R.layout.package_card, parent, false);
 
         return new MyViewHolder(itemView);
     }
@@ -83,10 +88,26 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-        MainMenu menulist = menuList.get(position);
+        final AppsMenu menulist = menuList.get(position);
+
+
+      holder.itemView.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+         // Toast.makeText(mContext, "you call "+menulist.getPhoneNum(), Toast.LENGTH_SHORT).show();
+
+              String url = menulist.getPhoneNum();
+              Intent i = new Intent(Intent.ACTION_VIEW);
+              i.setData(Uri.parse(url));
+
+              mContext.startActivity(i);
+
+          }
+      });
         holder.title.setText(menulist.getName());
 
-
+holder.count.setText(menulist.getPhoneNum());
+holder.period.setText(menulist.getPeriod());
 
         Picasso.with(mContext).load(menulist.getThumbnail()).fit().centerCrop()
                 .placeholder(R.drawable.placeholder)
@@ -94,42 +115,7 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.MyViewHolder> 
                 .into(holder.thumbnail);
 
 
-holder.overflow.setVisibility(View.INVISIBLE);
         setAnimation(holder.itemView, position);
-
-holder.thumbnail.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        Intent am;
- switch (holder.getLayoutPosition()){
-     case 0:
-
-         return;
-     case 1:
-
-
-
-           return;
-     case 2:
-
-         // call center
-            return;
-     case 3:
-
-
-         return;
-     case 4:
-
-
-             return;
-     case 5:
-
- default:
-return;
- }
-
-    }
-});
 
 
 /*

@@ -25,7 +25,7 @@ public class giftApps extends AppCompatActivity {
     public Animation animBounce;
     private RecyclerView recyclerView;
     private AppsAdapter adapter;
-    private List<MainMenu> menuList;
+    private List<AppsMenu> menuList;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -81,31 +81,21 @@ prepareAlbums();
      * Adding few albums for testing
      */
     private void prepareAlbums() {
-        int[] covers = new int[]{
-                R.drawable.ic_launcher_foreground,
-                R.drawable.ic_launcher_foreground,
-                R.drawable.ic_launcher_foreground,
-                R.drawable.ic_launcher_foreground,
-                R.drawable.ic_launcher_foreground,
-                R.drawable.ic_launcher_foreground};
 
-        MainMenu a = new MainMenu("Mereja",  covers[0]);
+        AppsMenu a = new AppsMenu("Mereja","https://play.google.com/store/apps/details?id=com.ethioroot.mereja&hl=en_US","com.ethioroot.mereja", "https://lh3.googleusercontent.com/suWTKHpGmA80WejBnX9HzIZh2dpxrkc0R6kBzWvrBf7-z4kJ6M25MW9C33bbSBAYg7Y=s180-rw");
         menuList.add(a);
 
-        a = new MainMenu("Hope ",  covers[1]);
+        a = new AppsMenu("TelePot","https://play.google.com/store/apps/details?id=com.ethioroot.tele.etteleportal","com.ethioroot.tele.etteleportal", "https://lh3.googleusercontent.com/J_MgDbBOzo2lg-mjnUvFkgyJCQFbVQIpMH_yZ1EBQE9AAa7Bs6koe8ijM-8Pp1JNWQ=s180-rw");
+        menuList.add(a);
+        a = new AppsMenu("Qumar","https://play.google.com/store/apps/details?id=com.com.ethioroot.kumar.kumar","com.com.ethioroot.kumar.kumar", "https://lh3.googleusercontent.com/C9JlUj-3ioABtSNeW0GimjzLYhkVWbzs3QEYDMZuHCbCLiFj8kfRshN_KZXOBgKSqueT=s180-rw");
+        menuList.add(a);
+        a = new AppsMenu("Hope music","https://play.google.com/store/apps/details?id=com.ethioroot.hopeentertainment","com.ethioroot.hopeentertainment", "https://lh3.googleusercontent.com/hhjCMJIpozR0-ytF6HFM9iqFFLFwePie-m57N8AyJsvC-2fymHOK3gu72Jhg2-R7N7Vz=s180-rw");
         menuList.add(a);
 
-        a = new MainMenu("Edna Mall",  covers[2]);
+        a = new AppsMenu("All In One","https://play.google.com/store/apps/details?id=com.ethioroot.facebooklite","com.ethioroot.facebooklite", "https://lh3.googleusercontent.com/jJtUhHfNMdAobWRsPZ5evnkDtBGC-17xXUjJlfazmJ-lnIIFNACurWUtI_m2MjxzPt4M=s180-rw");
         menuList.add(a);
 
-        a = new MainMenu("Teleport",  covers[3]);
-        menuList.add(a);
-
-
-        a = new MainMenu("Qumar",  covers[4]);
-        menuList.add(a);
-
-        a = new MainMenu("All in One",  covers[5]);
+        a = new AppsMenu("Amharic keyboard FynGeez - Ethiopia","https://play.google.com/store/apps/details?id=com.fynsystems.fyngeez","com.fynsystems.fyngeez", "https://lh3.googleusercontent.com/po1rzTYojq9GTs5wN08gMgNshdBy6Q4snnjOT9SvnnEDtIgqpY5ZAKI6cpzHaEkJsbE=s180-rw");
         menuList.add(a);
 
         adapter.notifyDataSetChanged();
