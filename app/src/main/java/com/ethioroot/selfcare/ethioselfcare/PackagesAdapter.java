@@ -1,6 +1,8 @@
 package com.ethioroot.selfcare.ethioselfcare;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
@@ -93,10 +95,37 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.MyView
       holder.itemView.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-          Toast.makeText(mContext, "Calling "+menulist.getPhoneNum(), Toast.LENGTH_SHORT).show();
+
+              AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+
+              builder.setTitle("Confirm Action");
+              builder.setMessage("Your are Making Call For  "+menulist.getName()+" For  "+menulist.getPeriod() +"\n "+menulist.getPhoneNum());
+
+              builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+                  public void onClick(DialogInterface dialog, int which) {
+
+                      Toast.makeText(mContext, "Calling "+menulist.getPhoneNum(), Toast.LENGTH_SHORT).show();
+                      PhoneCaller.MakeCall(menulist.getPhoneNum(),mContext);
+
+                      dialog.dismiss();
+                  }
+              });
+
+              builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                  @Override
+                  public void onClick(DialogInterface dialog, int which) {
+
+                      // Do nothing
+                      dialog.dismiss();
+                  }
+              });
+
+              AlertDialog alert = builder.create();
+              alert.show();
 
 
-              PhoneCaller.MakeCall(menulist.getPhoneNum(),mContext);
 
 
           }

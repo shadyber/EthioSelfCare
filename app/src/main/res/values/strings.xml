@@ -2,7 +2,7 @@
     <string name="app_name">Ethio Self Care</string>
     <string name="title_home">Home</string>
     <string name="title_gebeta">Gebeta</string>
-    <string name="title_account_man">Balance</string>
+    <string name="title_account_man">Account Manager</string>
     <string name="action_search">Search</string>
     <string name="action_profile">Profile</string>
     <string name="action_get_reward">Get Reward</string>

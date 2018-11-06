@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.InterstitialAd;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.MyViewHo
     private List<MainMenu> menuList;
 
 
-    public Animation animBounce,animZoomin,animZoomout;
+     public Animation animBounce,animZoomin,animZoomout;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, count;

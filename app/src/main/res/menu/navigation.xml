@@ -19,7 +19,7 @@
     <item
         android:id="@+id/navigation_extra"
         android:icon="@drawable/gift"
-        android:title="@string/title_account_man" />
+        android:title="@string/title_activity_gift_apps" />
 
 
 </menu>

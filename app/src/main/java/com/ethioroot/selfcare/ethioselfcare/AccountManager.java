@@ -8,8 +8,10 @@ import android.content.res.Resources;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
@@ -21,12 +23,25 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.reward.RewardItem;
+import com.google.android.gms.ads.reward.RewardedVideoAd;
+import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AccountManager extends AppCompatActivity {
+public class AccountManager extends AppCompatActivity  implements RewardedVideoAdListener {
+    private RewardedVideoAd mRewardedVideoAd;
+
+
+
 
 
 
@@ -36,6 +51,7 @@ public class AccountManager extends AppCompatActivity {
     private List<MainMenu> menuList;
 
 
+    private InterstitialAd mInterstitialAd;
     public static void sendAppItself(Activity paramActivity) throws IOException {
         PackageManager pm = paramActivity.getPackageManager();
         ApplicationInfo appInfo;
@@ -79,7 +95,15 @@ public class AccountManager extends AppCompatActivity {
 
                 return true;
             case R.id.action_reward:
-                //  showReardVideo();
+             showRewardVideo();
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                    RewardManager.AddPoint("point",1,getApplicationContext());
+
+
+                } else {
+                    Log.d("TAG", "The interstitial wasn't loaded yet.");
+                }
                 return true;
             case  R.id.action_share:
                 try {
@@ -101,8 +125,8 @@ public class AccountManager extends AppCompatActivity {
                 }
                 return true;
             case R.id.action_profile:
-                //  Intent profile =new Intent(MainActivity.this,ProfileActivity.class);
-                //startActivity(profile);
+                 Intent profile =new Intent(AccountManager.this,ProfileAcivity.class);
+               startActivity(profile);
                 return true;
             default:
 
@@ -147,6 +171,66 @@ public class AccountManager extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_manager);
 
+        // Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713
+        MobileAds.initialize(this, "ca-app-pub-3780418992794226~7630207731");
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-3780418992794226/6307305550");
+
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Log.d("TAG", "The interstitial wasn't loaded yet.");
+        }
+
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+
+                Runnable requester=new Runnable() {
+                    @Override
+                    public void run() {
+
+                        if (mInterstitialAd.isLoaded()) {
+                            mInterstitialAd.show();
+                        } else {
+                            Log.d("TAG", "The interstitial wasn't loaded yet.");
+                        }
+                    }
+                };
+
+                Handler handler=new Handler();
+                handler.postDelayed(requester,10000);
+
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                // Code to be executed when an ad request fails.
+            }
+
+            @Override
+            public void onAdOpened() {
+                // Code to be executed when the ad is displayed.
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                // Code to be executed when the user has left the app.
+                RewardManager.AddPoint("point",1,AccountManager.this);
+            }
+
+            @Override
+            public void onAdClosed() {
+                // Code to be executed when when the interstitial ad is closed.
+
+                mInterstitialAd.loadAd(new AdRequest.Builder().build());
+            }
+        });
+
+
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
         menuList = new ArrayList<>();
@@ -163,8 +247,104 @@ public class AccountManager extends AppCompatActivity {
         navigation.setSelectedItemId(R.id.navigation_account_man);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+
+
+        // Use an activity context to get the rewarded video instance.
+        mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this);
+        mRewardedVideoAd.setRewardedVideoAdListener(this);
+
+
+
+        loadRewardedVideoAd();
+    }
+    private void loadRewardedVideoAd() {
+        mRewardedVideoAd.loadAd("ca-app-pub-3780418992794226/7797478673",
+                new AdRequest.Builder().build());
+    }
+    /**
+     * Converting dp to pixel
+     */
+    private int dpToPx(int dp) {
+        Resources r = getResources();
+        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
 
+    public void showRewardVideo(){
+
+        if (mRewardedVideoAd.isLoaded()) {
+            mRewardedVideoAd.show();
+        }
+    }
+
+
+    @Override
+    public void onRewarded(RewardItem reward) {
+        //     Toast.makeText(this, "onRewarded! currency: " + reward.getType() + "  amount: " +
+        //    reward.getAmount(), Toast.LENGTH_SHORT).show();
+        // Reward the user.
+        RewardManager.AddPoint("point",reward.getAmount(),AccountManager.this);
+    }
+
+    @Override
+    public void onRewardedVideoAdLeftApplication() {
+        // Toast.makeText(this, "onRewardedVideoAdLeftApplication",
+        //     Toast.LENGTH_SHORT).show();
+
+        RewardManager.AddPoint("point",5,AccountManager.this);
+    }
+
+    @Override
+    public void onRewardedVideoAdClosed() {
+        //  Toast.makeText(this, "onRewardedVideoAdClosed", Toast.LENGTH_SHORT).show();
+        loadRewardedVideoAd();
+    }
+
+    @Override
+    public void onRewardedVideoAdFailedToLoad(int errorCode) {
+        Toast.makeText(this, "Reward Video Fail to Load ", Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onRewardedVideoAdLoaded() {
+        Toast.makeText(this, "Reward Video is Read To Play Tab on The Diamond icon play", Toast.LENGTH_SHORT).show();
+
+
+    }
+
+    @Override
+    public void onRewardedVideoAdOpened() {
+        //  Toast.makeText(this, "onRewardedVideoAdOpened", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRewardedVideoStarted() {
+        //  Toast.makeText(this, "onRewardedVideoStarted", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRewardedVideoCompleted() {
+        // Toast.makeText(this, "onRewardedVideoCompleted", Toast.LENGTH_SHORT).show();
+    }
+
+
+    @Override
+    public void onResume() {
+        mRewardedVideoAd.resume(this);
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        mRewardedVideoAd.pause(this);
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        mRewardedVideoAd.destroy(this);
+        super.onDestroy();
+    }
 
     /**
      * Adding few albums for testing
@@ -238,13 +418,6 @@ public class AccountManager extends AppCompatActivity {
         }
     }
 
-    /**
-     * Converting dp to pixel
-     */
-    private int dpToPx(int dp) {
-        Resources r = getResources();
-        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
-    }
 
 
 }
