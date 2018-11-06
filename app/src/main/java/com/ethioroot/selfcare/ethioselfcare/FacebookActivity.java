@@ -23,6 +23,7 @@ import android.widget.ProgressBar;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 
@@ -31,7 +32,7 @@ import java.io.IOException;
 public class FacebookActivity extends AppCompatActivity {
 
 
-
+    private AdView mAdView;
      private WebView webview;
 
 
@@ -205,6 +206,13 @@ public class FacebookActivity extends AppCompatActivity {
                 mInterstitialAd.loadAd(new AdRequest.Builder().build());
             }
         });
+
+
+
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
 
         webview =  findViewById(R.id.webView);
         webview.setWebViewClient(new WebViewClient());

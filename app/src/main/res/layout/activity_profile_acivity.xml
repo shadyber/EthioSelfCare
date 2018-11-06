@@ -12,6 +12,23 @@
         android:id="@+id/layout">
 
 
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="324dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-3780418992794226/2400358945"
+            ads:layout_constraintBottom_toBottomOf="@+id/webView"
+            ads:layout_constraintEnd_toEndOf="parent"
+            ads:layout_constraintStart_toStartOf="parent"></com.google.android.gms.ads.AdView>
+
         <ImageView
             android:id="@+id/header_cover_image"
             android:layout_width="match_parent"
@@ -20,7 +37,7 @@
             android:scaleType="centerCrop"
 
             android:src="@drawable/placeholder"
-            app:srcCompat="@drawable/placeholder" />
+            app:srcCompat="@color/colorAccent" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -111,6 +128,22 @@
             android:paddingRight="5dp"
             android:paddingLeft="5dp" >
 
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/adviewsmart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                app:adSize="SMART_BANNER"
+                app:adUnitId="ca-app-pub-3780418992794226/6330503629"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"></com.google.android.gms.ads.AdView>
         </android.support.constraint.ConstraintLayout>
     </RelativeLayout>
 

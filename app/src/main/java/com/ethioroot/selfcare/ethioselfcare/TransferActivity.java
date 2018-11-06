@@ -25,6 +25,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.reward.RewardItem;
@@ -36,7 +38,7 @@ import java.io.IOException;
 public class TransferActivity extends AppCompatActivity implements RewardedVideoAdListener {
     private RewardedVideoAd mRewardedVideoAd;
 
-
+    private AdView mAdView,mAdView2;
     private InterstitialAd mInterstitialAd;
 
 
@@ -213,13 +215,33 @@ public void selectContact(View view){
 
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+        mAdView = new AdView(this);
+        mAdView.setAdSize(AdSize.SMART_BANNER);
+
+
+
+
+
+
+
+        mAdView2 = findViewById(R.id.adView2);
+        AdRequest adRequest2 = new AdRequest.Builder().build();
+        mAdView2.loadAd(adRequest2);
+
+        mAdView2 = new AdView(this);
+        mAdView2.setAdSize(AdSize.SMART_BANNER);
+
 
 
 
         txtname=findViewById(R.id.textName);
         txtphone=findViewById(R.id.textPhone);
         phoneNumber=findViewById(R.id.txtContact);
-amount=findViewById(R.id.txtAmount);
+        amount=findViewById(R.id.txtAmount);
 
 
         phoneNumber.addTextChangedListener(new TextWatcher() {

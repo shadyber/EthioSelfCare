@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.reward.RewardItem;
@@ -35,7 +36,7 @@ public class DataPackageActivity extends AppCompatActivity  implements RewardedV
 
     private InterstitialAd mInterstitialAd;
 
-
+    private AdView mAdView;
 
     public static void sendAppItself(Activity paramActivity) throws IOException {
         PackageManager pm = paramActivity.getPackageManager();
@@ -173,6 +174,9 @@ public class DataPackageActivity extends AppCompatActivity  implements RewardedV
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
 
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         if (savedInstanceState == null) {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

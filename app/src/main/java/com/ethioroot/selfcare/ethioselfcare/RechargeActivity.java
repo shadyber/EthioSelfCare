@@ -30,6 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.reward.RewardItem;
@@ -46,7 +47,7 @@ import java.io.IOException;
 public class RechargeActivity extends AppCompatActivity  implements SurfaceHolder.Callback, Detector.Processor , RewardedVideoAdListener {
     private RewardedVideoAd mRewardedVideoAd;
 
-
+    private AdView mAdView;
     private InterstitialAd mInterstitialAd;
 
 
@@ -302,6 +303,9 @@ public class RechargeActivity extends AppCompatActivity  implements SurfaceHolde
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
 
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
 
         // Use an activity context to get the rewarded video instance.

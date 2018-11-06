@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.reward.RewardItem;
@@ -38,7 +39,7 @@ import java.util.List;
 
 public class giftApps extends AppCompatActivity implements  RewardedVideoAdListener {
     private RewardedVideoAd mRewardedVideoAd;
-
+    private AdView mAdView;
     public Animation animBounce;
     private RecyclerView recyclerView;
     private AppsAdapter adapter;
@@ -231,8 +232,12 @@ public class giftApps extends AppCompatActivity implements  RewardedVideoAdListe
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
-prepareAlbums();
 
+
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+        prepareAlbums();
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setSelectedItemId(R.id.navigation_extra);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);

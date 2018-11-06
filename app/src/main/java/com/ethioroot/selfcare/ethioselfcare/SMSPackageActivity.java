@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.reward.RewardItem;
@@ -31,7 +32,7 @@ import java.io.IOException;
 public class SMSPackageActivity extends AppCompatActivity  implements RewardedVideoAdListener {
     private RewardedVideoAd mRewardedVideoAd;
 
-
+    private AdView mAdView;
     private InterstitialAd mInterstitialAd;
 
 
@@ -170,6 +171,10 @@ public class SMSPackageActivity extends AppCompatActivity  implements RewardedVi
 
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
+
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         if (savedInstanceState == null) {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
