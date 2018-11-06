@@ -21,7 +21,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdListener;
@@ -234,7 +233,7 @@ public class giftApps extends AppCompatActivity implements  RewardedVideoAdListe
         recyclerView.setAdapter(adapter);
 
 
-        mAdView = findViewById(R.id.adView);
+        mAdView = findViewById(R.id.adView2);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
         prepareAlbums();

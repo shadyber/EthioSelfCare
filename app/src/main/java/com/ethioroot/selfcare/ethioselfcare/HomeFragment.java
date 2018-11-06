@@ -75,7 +75,8 @@ public class HomeFragment extends Fragment {
                 R.drawable.facebook,
                 R.drawable.giftapp,
                 R.drawable.emergency,
-                R.drawable.user};
+                R.drawable.user,
+                R.drawable.reward};
 
         MainMenu a = new MainMenu("Account Manager",  covers[0]);
         menuList.add(a);
@@ -97,6 +98,9 @@ public class HomeFragment extends Fragment {
         menuList.add(a);
 
         a = new MainMenu("Profile",  covers[6]);
+        menuList.add(a);
+
+        a = new MainMenu("Collect Points",  covers[7]);
         menuList.add(a);
 
         adapter.notifyDataSetChanged();

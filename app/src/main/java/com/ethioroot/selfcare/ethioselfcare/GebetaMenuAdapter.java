@@ -119,14 +119,22 @@ mContext.startActivity(am);
 
             return;
      case 3:
+         am=new Intent(mContext,AdsActivity.class);
+         mContext.startActivity(am);
 
     return;
      case 4:
+         am=new Intent(mContext,AdsActivity.class);
+         mContext.startActivity(am);
 
                return;
      case 5:
 
- default:
+         am=new Intent(mContext,AdsActivity.class);
+         mContext.startActivity(am);
+
+
+     default:
 return;
  }
 

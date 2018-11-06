@@ -206,16 +206,16 @@ public class EmergencyActivity extends AppCompatActivity {
                 R.drawable.data,
                 R.drawable.sms};
 
-        PackagesMenu a = new PackagesMenu("Police","*991","Plice",  covers[0]);
+        PackagesMenu a = new PackagesMenu("Police","991","Police",  covers[0]);
         menuList.add(a);
 
-        a = new PackagesMenu("Police","+251115512744","Federal Plice",  covers[0]);
+        a = new PackagesMenu("Police","+251115512744","Federal Police",  covers[0]);
         menuList.add(a);
 
-        a = new PackagesMenu("Police","+251111559122","Addis Ababa Plice",  covers[0]);
+        a = new PackagesMenu("Police","+251111559122","Addis Ababa Police",  covers[0]);
         menuList.add(a);
 
-        a = new PackagesMenu("Police","+251115528222","Tiraffic Plice",  covers[0]);
+        a = new PackagesMenu("Police","+251115528222","Traffic Police",  covers[0]);
         menuList.add(a);
 
 
@@ -225,28 +225,28 @@ public class EmergencyActivity extends AppCompatActivity {
 
 
 
-        a = new PackagesMenu("Ethiopian Electric Power Corporation (EEPCo)","0114431478","South Addis Abeba ",  covers[0]);
+        a = new PackagesMenu("Ethiopian Electric Power Corporation (EEPCo)","0114431478","South Addis Ababa ",  covers[0]);
         menuList.add(a);
 
 
-        a = new PackagesMenu("Ethiopian Electric Power Corporation (EEPCo)","0114431478","South Addis Abeba ",  covers[0]);
+        a = new PackagesMenu("Ethiopian Electric Power Corporation (EEPCo)","0114431478","South Addis Ababa ",  covers[0]);
         menuList.add(a);
 
 
 
-        a = new PackagesMenu("Ethiopian Electric Power Corporation (EEPCo)","0112-595657","North Addis Abeba ",  covers[0]);
+        a = new PackagesMenu("Ethiopian Electric Power Corporation (EEPCo)","0112-595657","North Addis Ababa ",  covers[0]);
         menuList.add(a);
 
 
-        a = new PackagesMenu("Ethiopian Electric Power Corporation (EEPCo)","0113490585","West Addis Abeba ",  covers[0]);
+        a = new PackagesMenu("Ethiopian Electric Power Corporation (EEPCo)","0113490585","West Addis Ababa ",  covers[0]);
         menuList.add(a);
 
 
-        a = new PackagesMenu("Ethiopian Electric Power Corporation (EEPCo)","0111262105","Central Addis Abeba ",  covers[0]);
+        a = new PackagesMenu("Ethiopian Electric Power Corporation (EEPCo)","0111262105","Central Addis Ababa ",  covers[0]);
         menuList.add(a);
 
 
-        a = new PackagesMenu("Information","997","Infrmation ",  covers[0]);
+        a = new PackagesMenu("Information","997","Information ",  covers[0]);
         menuList.add(a);
 
         a = new PackagesMenu("Information","998","International Information ",  covers[0]);

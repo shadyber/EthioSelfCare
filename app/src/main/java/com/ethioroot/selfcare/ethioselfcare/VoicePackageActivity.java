@@ -174,7 +174,7 @@ public class VoicePackageActivity extends AppCompatActivity  implements Rewarded
 
 
 
-        mAdView = findViewById(R.id.adView);
+        mAdView = findViewById(R.id.adView2);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 

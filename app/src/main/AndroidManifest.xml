@@ -80,7 +80,8 @@
             android:name=".SMSPackageActivity"
             android:parentActivityName=".GebetaActivity" />
         <activity android:name=".EmergencyActivity" />
-        <activity android:name=".PermisionRequestActivity"></activity>
+        <activity android:name=".PermisionRequestActivity" />
+        <activity android:name=".AdsActivity"></activity>
     </application>
 
 </manifest>

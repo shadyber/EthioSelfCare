@@ -303,7 +303,7 @@ public class RechargeActivity extends AppCompatActivity  implements SurfaceHolde
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
 
-        mAdView = findViewById(R.id.adView);
+        mAdView = findViewById(R.id.adView2);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 

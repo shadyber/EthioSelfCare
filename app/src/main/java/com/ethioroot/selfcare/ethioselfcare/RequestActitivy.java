@@ -218,7 +218,7 @@ PhoneCaller.MakeCall("*806*"+txtphone.getText().toString()+"#",this);
 
 
 
-        mAdView = findViewById(R.id.adView);
+        mAdView = findViewById(R.id.adView2);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 

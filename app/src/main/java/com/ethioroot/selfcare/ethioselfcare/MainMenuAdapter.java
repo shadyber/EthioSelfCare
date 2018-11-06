@@ -135,8 +135,12 @@ PhoneCaller.MakeCall("994",mContext);
          mContext.startActivity(emergency);
          return;
      case 6:
-         Intent profile=new Intent(mContext,ProfileAcivity                                                                                                                                                                                  .class);
+         Intent profile=new Intent(mContext,ProfileAcivity.class);
          mContext.startActivity(profile);
+         return;
+     case 7:
+         Intent adsact=new Intent(mContext,AdsActivity.class);
+         mContext.startActivity(adsact);
          return;
  default:
 return;

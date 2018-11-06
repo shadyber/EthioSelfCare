@@ -23,7 +23,7 @@
     </FrameLayout>
 
     <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView"
+        android:id="@+id/adView2"
         android:layout_width="324dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

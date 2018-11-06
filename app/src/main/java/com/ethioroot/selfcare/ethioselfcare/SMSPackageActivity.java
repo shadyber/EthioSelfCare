@@ -172,7 +172,7 @@ public class SMSPackageActivity extends AppCompatActivity  implements RewardedVi
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
 
-        mAdView = findViewById(R.id.adView);
+        mAdView = findViewById(R.id.adView2);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 

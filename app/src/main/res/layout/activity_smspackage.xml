@@ -22,7 +22,7 @@
 
 
     <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView"
+        android:id="@+id/adView2"
         android:layout_width="0dp"
         android:layout_height="44dp"
         android:layout_alignParentBottom="true"
