@@ -1,7 +1,9 @@
 package com.ethioroot.selfcare.ethioselfcare;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
@@ -11,7 +13,24 @@ import com.google.android.gms.ads.AdView;
 public class ProfileAcivity extends AppCompatActivity {
 
     TextView point,name,level;
+
+
     private AdView mAdView;
+
+
+    public   void SignUp(View view){
+
+        Intent intent=new Intent(ProfileAcivity.this,LoginActivity.class);
+    startActivity(intent);
+
+    }
+    public   void getPoint(View view){
+
+        Intent intent=new Intent(ProfileAcivity.this,AdsActivity.class);
+        startActivity(intent);
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

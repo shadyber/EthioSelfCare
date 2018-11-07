@@ -122,10 +122,12 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.MyViewHo
                         mContext.startActivity(request);
                         return;
                     case 4:
-
+                      Intent  adsact=new Intent(mContext,AdsActivity.class);
+                        mContext.startActivity(adsact);
                         return;
                     case 5:
-
+                        adsact=new Intent(mContext,AdsActivity.class);
+                        mContext.startActivity(adsact);
                     default:
                         return;
                 }

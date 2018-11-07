@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileAcivity">
+    tools:context=".LoginActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -66,20 +66,6 @@
             android:elevation="4dp"
             android:paddingBottom="24dp">
 
-
-            <ImageView
-                android:id="@+id/edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="16dp"
-                android:clickable="true"
-
-                android:onClick="SignUp"
-                android:src="@android:drawable/ic_menu_edit" />
-
             <ImageView
                 android:id="@+id/edit2"
                 android:layout_width="wrap_content"
@@ -94,17 +80,48 @@
                 android:clickable="true"
                 android:onClick="getPoint"
                 android:src="@android:drawable/ic_input_add" />
-
-            <TextView
-                android:id="@+id/name"
+            <ImageView
+                android:id="@+id/edit"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:clickable="true"
+
+                android:src="@android:drawable/ic_menu_save" />
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="70dp"
-                android:text="Your Name"
+                android:hint="Your Name"
+                android:inputType="textPersonName"
                 android:textColor="#fff"
                 android:textSize="24sp"
                 android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/phone"
+                android:layout_width="367dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/name"
+
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="17dp"
+                android:layout_marginRight="17dp"
+                android:ems="10"
+                android:hint="Your Phone Number"
+                android:inputType="phone" />
 
             <TextView
                 android:id="@+id/point"
@@ -115,7 +132,8 @@
                 android:layout_marginTop="10dp"
                 android:text="0"
                 android:textColor="#fff"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:visibility="invisible" />
 
             <TextView
                 android:id="@+id/level"
@@ -126,7 +144,8 @@
                 android:layout_marginTop="10dp"
                 android:text="(begineer)"
                 android:textColor="#fff"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:visibility="invisible" />
         </RelativeLayout>
 
 
@@ -162,5 +181,6 @@
                 app:layout_constraintTop_toTopOf="parent"></com.google.android.gms.ads.AdView>
         </android.support.constraint.ConstraintLayout>
     </RelativeLayout>
+
 
 </android.support.constraint.ConstraintLayout>

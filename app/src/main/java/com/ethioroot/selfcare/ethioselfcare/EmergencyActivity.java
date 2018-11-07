@@ -1,6 +1,8 @@
 package com.ethioroot.selfcare.ethioselfcare;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -22,6 +24,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
@@ -89,37 +92,67 @@ public class EmergencyActivity extends AppCompatActivity {
     }
 
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
             case R.id.action_like:
 
-                String shareBody = "Downlolad Ethio Self Care From Google Play  : https://play.google.com/store/apps/details?id=com.ethioroot.mereja";
-                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-                sharingIntent.setType("text/plain");
-                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Manage Your Mobile Account and all Ethio Telecom Services ");
-                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-                startActivity(Intent.createChooser(sharingIntent, "Share This Massage Using "));
-                RewardManager.AddPoint("point",5,getApplicationContext());
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(EmergencyActivity.this);
+
+                builder.setTitle("You Like Etho Self Care ...");
+                builder.setMessage("Would You mind Rating 5 Star for Ethio Self Care on Google Play Store  \n 5 Points Will Be Added to Your Score After All.");
+
+                builder.setPositiveButton("YES Sure", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+
+
+                        final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+                        try {
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                        } catch (android.content.ActivityNotFoundException anfe) {
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                        }
+
+                    }
+                });
+
+                builder.setNegativeButton("Maybe Later", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        // Do nothing
+                        dialog.dismiss();
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+
+
 
                 return true;
             case R.id.action_reward:
-                //  showReardVideo();
+                Toast.makeText(EmergencyActivity.this,"No Ads inside Emergency Activiy for safety",Toast.LENGTH_LONG).show();
+
                 if (mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
-                    RewardManager.AddPoint("point",1,getApplicationContext());
-
-
                 } else {
                     Log.d("TAG", "The interstitial wasn't loaded yet.");
                 }
+
                 return true;
             case  R.id.action_share:
                 try {
                     sendAppItself(EmergencyActivity.this);
                 } catch (IOException e) {
-
+                    String shareBody;
+                    Intent sharingIntent;
                     shareBody = "Downlolad Ethio Self Care From Google Play  : https://play.google.com/store/apps/details?id=com.ethioroot.mereja";
                     sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                     sharingIntent.setType("text/plain");
@@ -139,11 +172,16 @@ public class EmergencyActivity extends AppCompatActivity {
                 startActivity(profile);
                 return true;
             default:
-
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                } else {
+                    Log.d("TAG", "The interstitial wasn't loaded yet.");
+                }
                 return super.onOptionsItemSelected(item);
         }
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

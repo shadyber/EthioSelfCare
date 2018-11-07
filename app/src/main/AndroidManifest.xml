@@ -81,7 +81,8 @@
             android:parentActivityName=".GebetaActivity" />
         <activity android:name=".EmergencyActivity" />
         <activity android:name=".PermisionRequestActivity" />
-        <activity android:name=".AdsActivity"></activity>
+        <activity android:name=".AdsActivity" />
+        <activity android:name=".LoginActivity"></activity>
     </application>
 
 </manifest>

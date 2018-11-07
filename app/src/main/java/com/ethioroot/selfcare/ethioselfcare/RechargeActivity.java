@@ -62,19 +62,51 @@ public class RechargeActivity extends AppCompatActivity  implements SurfaceHolde
 
 
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
             case R.id.action_like:
 
-                String shareBody = "Downlolad Ethio Self Care From Google Play  : https://play.google.com/store/apps/details?id=com.ethioroot.mereja";
-                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-                sharingIntent.setType("text/plain");
-                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Manage Your Mobile Account and all Ethio Telecom Services ");
-                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-                startActivity(Intent.createChooser(sharingIntent, "Share This Massage Using "));
-                RewardManager.AddPoint("point",5,getApplicationContext());
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(RechargeActivity.this);
+
+                builder.setTitle("You Like Etho Self Care ...");
+                builder.setMessage("Would You mind Rating 5 Star for Ethio Self Care on Google Play Store  \n 5 Points Will Be Added to Your Score After All.");
+
+                builder.setPositiveButton("YES Sure", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+
+
+                        final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+                        try {
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                            RewardManager.AddPoint("point",5,getApplicationContext());
+
+                        } catch (android.content.ActivityNotFoundException anfe) {
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                        }
+
+                    }
+                });
+
+                builder.setNegativeButton("Maybe Later", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        // Do nothing
+                        dialog.dismiss();
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+
+
 
                 return true;
             case R.id.action_reward:
@@ -91,7 +123,8 @@ public class RechargeActivity extends AppCompatActivity  implements SurfaceHolde
                 try {
                     sendAppItself(RechargeActivity.this);
                 } catch (IOException e) {
-
+                    String shareBody;
+                    Intent sharingIntent;
                     shareBody = "Downlolad Ethio Self Care From Google Play  : https://play.google.com/store/apps/details?id=com.ethioroot.mereja";
                     sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                     sharingIntent.setType("text/plain");
@@ -120,6 +153,7 @@ public class RechargeActivity extends AppCompatActivity  implements SurfaceHolde
         }
 
     }
+
 
     EditText txtcard;
     TextView txtcounter;
