@@ -175,7 +175,7 @@ public class TransferActivity extends AppCompatActivity implements RewardedVideo
 
     public void TransferBalnce(View view){
 
-        PhoneCaller.MakeCall("*806*"+txtphone.getText().toString()+amount.getText().toString()+"#",this);
+        PhoneCaller.MakeCall("*806*"+txtphone.getText().toString()+"*"+amount.getText().toString()+"#",this);
 
 
     }
